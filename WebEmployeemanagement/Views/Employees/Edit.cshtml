@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+@{
+    if (TempData["successmsg"] != null)
+    {
+        <div class="alert alert-success">
+            <p>@TempData["successmsg"]</p>
+        </div>
+    }
+}
+
+
+<h2>Edit</h2>
+<form method="post" action="@Url.Action("edit","Employees")">
+    <input type="hidden" name="Id" value="@ViewBag.employeedata.id" />
+    <div class="form-group">
+        <label>Employee Firstname</label>
+        <input type="text" class="form-control" name="fname" value="@ViewBag.employeedata.FirstName" />
+    </div>
+
+    <div class="form-group">
+        <label>Employee Lastname</label>
+        <input type="text" class="form-control" name="lname" value="@ViewBag.employeedata.LastName" />
+    </div>
+    <div class="form-group">
+        <label> Sex</label> &nbsp; &nbsp;
+        <input type="radio" name="sex" @(@ViewBag.employeedata.Sex == "Male" ? "Checked":"")  value="Male"/> Male &nbsp; &nbsp;
+        <input type="radio" name="sex"  @(@ViewBag.employeedata.Sex == "Female" ? "Checked":"")  value="Female" /> Female
+    </div>
+    <div class="form-group">
+        <label>Age</label>
+        <select class="form-control" name="age">
+            <script>
+                for (var i = 20; i <= 45; i++) {
+                    document.write('<option @*@(@ViewBag.employeedata.Age == i ? "Checked":"")*@>' + i + '</option>')
+                }
+
+            </script>
+           @** <option>20</option>
+            <option>21</option>*@
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Salary</label>
+        <input type="text" class="form-control" name="salary" value="@ViewBag.employeedata.Salary" />
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <input type="text" class="form-control" name="address" value="@ViewBag.employeedata.Address" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+
+</form>
+
+

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    if (TempData["successmsg"] != null)
+    {
+        <div class="alert alert-success">
+            <p>@TempData["successmsg"]</p>
+        </div>
+    }
+}
+
+
+<h2>Index <a href="@Url.Action("create", "employees")" class="btn btn-success">Create New Employee </a> </h2> 
+<table class="table">
+    <thead>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Sex</th>
+        <th>Age</th>
+        <th>Salary</th>
+        <th>Address</th>
+
+    </thead>
+    <tbody>
+        @{
+            foreach (Employee employee in ViewBag.allemployees)
+            {
+                <tr>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.Sex</td>
+                    <td>@employee.Age</td>
+                    <td>@employee.Salary</td>
+                    <td>@employee.Address</td>
+                    <td><a href="@Url.Action("edit", "employees", new { id = @employee.id })" class="btn btn-success"> Edit</a></td>
+                    <td><a href="@Url.Action("delete", "employees", new { id = @employee.id })" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete?')"> Delete</a></td>
+                </tr>
+
+
+
+               
+            }
+
+        }
+
+    </tbody>
+
+   
+
+</table>
+
